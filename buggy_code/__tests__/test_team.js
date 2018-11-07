@@ -88,8 +88,9 @@ test('Test Gets a random number of players from a group of players', () => {
 // Static method employed to generate a random team (11 players) from a list of possible players
 test('Test Static method employed to generate a random team (11 players) from a list of possible players', () => {
     let jsonObjects = readJSONData('./data/sample_11Players.json');
+
     let arrayPlayers = extractDataFromRawJSON(jsonObjects);
     console.log(arrayPlayers);
-   Team.createRandomTeam(arrayPlayers, '4-5-1', 'SERGIO_HOMONCULO', 1000000);
+  // Team.createRandomTeam(arrayPlayers, '4-5-1', 'SERGIO_HOMONCULO', 1000000);
     
 });
