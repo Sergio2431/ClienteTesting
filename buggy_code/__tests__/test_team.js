@@ -67,22 +67,29 @@ test('Test gets a tactic and parses it to extract the number of defenders, midfi
 /** POSIBLE BUGGGGGGGGGGGG le pasamos el string con una letra**/
 //Static method that gets a tactic and parses it to extract the number of defenders, midfielders, and attackers
 test('Test gets a tactic and parses it to extract the number of defenders, midfielders, and attackers, with letter', () => {
-    expect( f=> Team._parseTactic('4-4-e')).toThrowError(Error);
+    expect(f => Team._parseTactic('4-4-e')).toThrowError(Error);
 });
 
 
 /** POSIBLE BUGGGGGGGGGGGG al poder pasarle por ejemplo esta alineación 4-4-20**/
 test('Test gets a tactic and parses it to extract the number of defenders, midfielders, and attackers, with 28 players', () => {
-    expect( f=> Team._parseTactic('4-4-20')).toThrowError(Error);
+    expect(f => Team._parseTactic('4-4-0')).toThrowError(Error);
 });
 
 
-    //Gets a random number of players from a group of players
-   /* test('Test Gets a random number of players from a group of players', () => {
-    let jsonObjects = readJSONData('./data/sample.json'); 
+//Gets a random number of players from a group of players
+test('Test Gets a random number of players from a group of players', () => {
+    let jsonObjects = readJSONData('./data/sample.json');
     let arrayReturn = Team._getRandomPlayers(jsonObjects, 2);
-    expect(Team._getRandomPlayers(jsonObjects, 2)).toThrowError();
+    console.log(arrayReturn);   
+    expect(f=> Team._getRandomPlayers(jsonObjects, 4)).toThrowError(Error);
+});
 
-    console.log(arrayReturn);
- });*/
-
+// Static method employed to generate a random team (11 players) from a list of possible players
+test('Test Static method employed to generate a random team (11 players) from a list of possible players', () => {
+    let jsonObjects = readJSONData('./data/sample_11Players.json');
+    let arrayPlayers = extractDataFromRawJSON(jsonObjects);
+    console.log(arrayPlayers);
+   Team.createRandomTeam(arrayPlayers, '4-5-1', 'SERGIO_HOMONCULO', 1000000);
+    
+});
