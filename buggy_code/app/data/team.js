@@ -113,7 +113,7 @@ class Team {
      * @throws {Error} In case that the tactic is not specified in the format numberBackers-numberMidfielders-numberForwarders
      * @throws {Error} In case that the specified tactic employs more than 10 (+1) players
      */
-    static _parseTactic(tactic) {
+    static _parseTactic(tactic) { //BUUUUUUUUUUUUUUUUUGGGGGGGGGGGGGG
         //Split the string using the - character
         let playersPerPosition = tactic.split('-');
         //If more or less than 3 positions, the tactic is in incorrect format
