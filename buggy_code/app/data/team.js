@@ -102,7 +102,7 @@ class Team {
      */
     static getRandomTeamTactic() {
         let availableTactics = ['3-4-3', '3-5-2', '3-6-1', '4-3-3', '4-4-2', '4-5-1', '5-3-2'];
-        let randomIndex = Math.floor(Math.random() * (availableTactics.length-1));
+        let randomIndex = Math.floor(Math.random() * (availableTactics.length - 1));
         return availableTactics[randomIndex];
     }
 
@@ -121,20 +121,20 @@ class Team {
             throw Error('Tactics may only take 3 positions and got ' + playersPerPosition + ' with ' +
                 playersPerPosition.length + ' elements');
         }
-        
-         if (playersPerPosition.length !== 3) {
+
+        if (playersPerPosition.length !== 3) {
             throw Error('Tactic has more than 10 players ' + playersPerPosition + ' with ' +
                 playersPerPosition.length + ' elements');
         }
         //Parse tactic elements to numbers
         playersPerPosition = playersPerPosition.map(elem => parseInt(elem));
-        let sum=0;
+        let sum = 0;
         //If any of the elements is not an integer, then raise error
         for (let element of playersPerPosition) {
             if (isNaN(element)) {
                 throw Error('One of the specified positions is not a number');
             }
-             sum += element;
+            sum += element;
         }
         //If the total of players is > 10
         if (sum !== 10) {
@@ -196,37 +196,41 @@ class Team {
             throw Error('At least 1 forward player is required');
         }
 
+
         /*Infinite loop employed to generate random teams. It will break in case that the team
         generated takes less than the maximum budget*/
+
         while (true) {
+            
             let newTeam = new Team(teamName);
 
             let setPlayersInTeam = new Set(); //Used to check for players already employed
 
             for (let selectionConfiguration of [ //For loop employed to select goalkeeper, backers, midfielders, and forwarders
-                [player => player.isGoalKeeper(), 1], //Elements to iterate over are an array of [functionToFilterPosition,numberPlayerstoChooseInPosition]
-                [player => player.isBack(), numberBackers],
-                [player => player.isMidfielder(), numberMidfielders],
-                [player => player.isForward(), numberForwarders]
-            ]) {
+                    [player => player.isGoalKeeper(), 1], //Elements to iterate over are an array of [functionToFilterPosition,numberPlayerstoChooseInPosition]
+                    [player => player.isBack(), numberBackers],
+                    [player => player.isMidfielder(), numberMidfielders],
+                    [player => player.isForward(), numberForwarders],
+
+                ]) {
                 let conditionFunction = selectionConfiguration[0];
 
-                let numberOfPlayersToSelect = selectionConfiguration[1];
+                let numberOfPlayersToSelect = selectionConfiguration[1];    
 
-                let poolPlayers = listPossiblePlayers.filter(conditionFunction);
+                let poolPlayers = listPossiblePlayers.filter(conditionFunction);                
 
                 let selectedPlayers = Team._getRandomPlayers(poolPlayers, numberOfPlayersToSelect);
 
                 selectedPlayers.forEach(player => setPlayersInTeam.add(player.getID()));
-
-                newTeam.addPlayers(selectedPlayers);
+                
+                newTeam.addPlayers(selectedPlayers);                
+                
+                    if(teamValue < newTeam.teamValue || newTeam.listPlayers.length === 11)
+                        return newTeam;
+                               
             }
-
-
         }
-
     }
-
 }
 
 exports.Team = Team;

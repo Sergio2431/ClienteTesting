@@ -81,16 +81,19 @@ test('Test gets a tactic and parses it to extract the number of defenders, midfi
 test('Test Gets a random number of players from a group of players', () => {
     let jsonObjects = readJSONData('./data/sample.json');
     let arrayReturn = Team._getRandomPlayers(jsonObjects, 2);
-    console.log(arrayReturn);   
-    expect(f=> Team._getRandomPlayers(jsonObjects, 4)).toThrowError(Error);
+    console.log(arrayReturn);
+    expect(f => Team._getRandomPlayers(jsonObjects, 4)).toThrowError(Error);
 });
 
 // Static method employed to generate a random team (11 players) from a list of possible players
 test('Test Static method employed to generate a random team (11 players) from a list of possible players', () => {
     let jsonObjects = readJSONData('./data/sample_11Players.json');
+    let jsonObjects_Error = readJSONData('./data/sample.json');
 
     let arrayPlayers = extractDataFromRawJSON(jsonObjects);
-    console.log(arrayPlayers);
-  // Team.createRandomTeam(arrayPlayers, '4-5-1', 'SERGIO_HOMONCULO', 1000000);
+    let arrayPlayersError = extractDataFromRawJSON(jsonObjects_Error);
+
+   console.log(Team.createRandomTeam(arrayPlayers, '4-5-1', 'SERGIO_HOMONCULO', 1100000));
+   expect(f => Team.createRandomTeam(arrayPlayersError, '4-5-1', 'SERGIO_HOMONCULO', 10000000)).toThrowError(Error);
     
 });
