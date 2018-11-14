@@ -1,7 +1,6 @@
 const League = require('../app/data/league').League;
-const Calendar = require('../app/data/league').Calendar;
-/*const Team = require('../app/data/team').Team;
-const readJSONData = require('../app/data/json_reader').readJSONData;
+const Team = require('../app/data/team').Team;
+/*const readJSONData = require('../app/data/json_reader').readJSONData;
 const extractDataFromRawJSON = require('../app/data/json_reader').extractDataFromRawJSON;*/
 
 //Testing construct
@@ -38,13 +37,15 @@ test('Test to add team in League', () => {
 //Test createCalendar
 test('Test to create a Calendar', () => {
 
-    let calendar = new Calendar([]);
-    expect(calendar.createCalendar).toEqual([]);
-})
+    let league = new League(1);
+    league.createCalendar();
+    expect(league.calendar).toEqual([]);
+});
 
 //Test CREATE RANDOM LEAGUE
 test('Test create random league', () => {
-    let league = League.createRandomLeague(arrayPlayers, 5,10,24);
+    let arrayPlayers = [];
+    //let league = League.createRandomLeague(arrayPlayers,5,10,24);
 
-    expect(f => league.createRandomLeague(arrayPlayers, 5,10,24)).toThrowError(Error);
-})
+    expect(f => league.createRandomLeague(arrayPlayers,5,10,24)).toThrowError(Error);
+});
