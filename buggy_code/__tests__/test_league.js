@@ -3,7 +3,7 @@ const Calendar = require('../app/data/league').Calendar;
 /*const Team = require('../app/data/team').Team;
 const readJSONData = require('../app/data/json_reader').readJSONData;
 const extractDataFromRawJSON = require('../app/data/json_reader').extractDataFromRawJSON;*/
-
+/*
 //Testing construct
 test('test Constructor', () => {
     let league = new League(5);
@@ -34,17 +34,35 @@ test('Test to add team in League', () => {
         this.listTeams.push(team);
     }*/
 
-
+/*
 //Test createCalendar
 test('Test to create a Calendar', () => {
 
     let calendar = new Calendar([]);
     expect(calendar.createCalendar).toEqual([]);
-})
+});
 
 //Test CREATE RANDOM LEAGUE
 test('Test create random league', () => {
     let league = League.createRandomLeague(arrayPlayers, 5,10,24);
 
     expect(f => league.createRandomLeague(arrayPlayers, 5,10,24)).toThrowError(Error);
+});
+
+//@param {Array<Player>} playerData An array of player profiles that will be selected to generate the teams
+test('Test add player for generates teams', () => {
+    let league = League.playerData(arrayPlayers);
+
+    expect(f => league.playerData(arrayPlayers)).toThrowError(Error);
+})*/
+
+//@param {Number} numberOfTeams An integer that delimits the number of teams that will compete in the league
+test('Test to delimit the number of teams', () => {
+    let team = new Team ("Barcelona");
+    //let league = new League(1);
+    //let jsonObjects = readJSONData('./data/sample.json');
+    let arrayPlayers = extractDataFromRawJSON(jsonObjects);
+    expect(team.addPlayers(arrayPlayers));
+    //expect(league.addTeam("Barcelona"));
+
 })

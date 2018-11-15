@@ -51,4 +51,37 @@ test('Test extractDataFromRawJSON', () => {
     expect(arrayPlayers[0].isForward()).toBe(true);
     expect(arrayPlayers[0].isMidfielder()).toBe(true);
     expect(arrayPlayers[0].isBack()).toBe(false);
+    expect(arrayPlayers[0].isGoalKeeper()).toBe(false);
+});
+
+test('Test extractDataFromRawJSON', () => {
+    let jsonObjects = readJSONData('./data/sample.json');
+    let arrayPlayers = extractDataFromRawJSON(jsonObjects);
+    expect(arrayPlayers.length).toBe(3);
+    expect(arrayPlayers[1].getName()).toBe('L. Messi');
+    expect(arrayPlayers[1].getAge()).toBe(30);
+    expect(arrayPlayers[1].getQuality()).toBe(93);
+    expect(arrayPlayers[1].getNationality()).toBe('Argentina');
+    expect(arrayPlayers[1].getValue()).toBe(10500000);
+    expect(arrayPlayers[1].getTeam()).toBe('FC Barcelona');
+    expect(arrayPlayers[1].isForward()).toBe(false);
+    expect(arrayPlayers[1].isMidfielder()).toBe(true);
+    expect(arrayPlayers[1].isBack()).toBe(false);
+    expect(arrayPlayers[1].isGoalKeeper()).toBe(false);
+});
+
+test('Test extractDataFromRawJSON', () => {
+    let jsonObjects = readJSONData('./data/sample.json');
+    let arrayPlayers = extractDataFromRawJSON(jsonObjects);
+    expect(arrayPlayers.length).toBe(3);
+    expect(arrayPlayers[2].getName()).toBe('Neymar');
+    expect(arrayPlayers[2].getAge()).toBe(25);
+    expect(arrayPlayers[2].getQuality()).toBe(92);
+    expect(arrayPlayers[2].getNationality()).toBe('Brazil');
+    expect(arrayPlayers[2].getValue()).toBe(12300000);
+    expect(arrayPlayers[2].getTeam()).toBe('Paris Saint-Germain');
+    expect(arrayPlayers[2].isForward()).toBe(false);
+    expect(arrayPlayers[2].isMidfielder()).toBe(true);
+    expect(arrayPlayers[2].isBack()).toBe(false);
+    expect(arrayPlayers[2].isGoalKeeper()).toBe(false);
 });
