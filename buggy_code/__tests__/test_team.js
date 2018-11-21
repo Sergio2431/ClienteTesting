@@ -93,7 +93,7 @@ test('Test Static method employed to generate a random team (11 players) from a 
     let arrayPlayers = extractDataFromRawJSON(jsonObjects);
     let arrayPlayersError = extractDataFromRawJSON(jsonObjects_Error);
 
-   console.log(Team.createRandomTeam(arrayPlayers, '4-5-1', 'SERGIO_HOMONCULO', 1100000));
+   console.log(Team.createRandomTeam(arrayPlayers, '4-5-1', 'SERGIO_HOMONCULO', 1000000));
    expect(f => Team.createRandomTeam(arrayPlayersError, '4-5-1', 'SERGIO_HOMONCULO', 10000000)).toThrowError(Error);
     
 });

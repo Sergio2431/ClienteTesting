@@ -21,6 +21,7 @@ class League{
      * @throws {Error} In case that the league is already full
      */
     addTeam(team){
+             
         if(this.listTeams.length==this.numberOfTeams){
             throw Error('The league is full with teams!');
         }
@@ -47,7 +48,7 @@ class League{
      * @throws {Error} In case that there are not enough players to create the desired number of teams, or in case that the minimum team value is higher than the maximum team value 
      */
     static createRandomLeague(playerData,numberOfTeams,minTeamValue,maxTeamValue){
-        
+                
         if(playerData.length < numberOfTeams * 11){
             throw Error('Not enough players to create the league');
         }
@@ -57,10 +58,12 @@ class League{
         for(let i=0;i<numberOfTeams;i++){ //For each team to be created
             //Filter players that are currently available
             let playersAvailable = playerData.filter(player=>!playersInLeague.has(player));
+            
             //Select random team budget between the minimum and maximum specified as parameter
             let teamValue = Math.random() * (maxTeamValue-minTeamValue) + minTeamValue;
             //Create the team randomly
             let team = Team.createRandomTeam(playersAvailable,Team.getRandomTeamTactic(),"Team"+i,teamValue);
+                       
             //Add the team to the league
             newLeague.addTeam(team);
         }

@@ -154,6 +154,7 @@ class Team {
      * @throws Error in case that there are not enough players to choose randomly
      */
     static _getRandomPlayers(listPlayers, numberPlayers) {
+
         if (listPlayers.length < numberPlayers) {
             throw Error('Insufficient players to make a team');
         }
@@ -183,6 +184,7 @@ class Team {
         let numberMidfielders = parseInt(playersPerPosition[1]);
         let numberForwarders = parseInt(playersPerPosition[2]);
         let totalPlayersInTeam = numberBackers + numberForwarders + numberMidfielders + 1;
+
         if (totalPlayersInTeam != 11) {
             throw Error('The team must have exactly 11 players');
         }
@@ -195,16 +197,11 @@ class Team {
         if (numberForwarders < 1) {
             throw Error('At least 1 forward player is required');
         }
-
-
         /*Infinite loop employed to generate random teams. It will break in case that the team
         generated takes less than the maximum budget*/
-
         while (true) {
-            
             let newTeam = new Team(teamName);
-
-            let setPlayersInTeam = new Set(); //Used to check for players already employed
+            let setPlayersInTeam = new Set(); //Used to check for players already employe            
 
             for (let selectionConfiguration of [ //For loop employed to select goalkeeper, backers, midfielders, and forwarders
                     [player => player.isGoalKeeper(), 1], //Elements to iterate over are an array of [functionToFilterPosition,numberPlayerstoChooseInPosition]
@@ -215,19 +212,21 @@ class Team {
                 ]) {
                 let conditionFunction = selectionConfiguration[0];
 
-                let numberOfPlayersToSelect = selectionConfiguration[1];    
+                let numberOfPlayersToSelect = selectionConfiguration[1];
 
-                let poolPlayers = listPossiblePlayers.filter(conditionFunction);                
+                let poolPlayers = listPossiblePlayers.filter(conditionFunction);
 
                 let selectedPlayers = Team._getRandomPlayers(poolPlayers, numberOfPlayersToSelect);
 
                 selectedPlayers.forEach(player => setPlayersInTeam.add(player.getID()));
-                
-                newTeam.addPlayers(selectedPlayers);                
-                
-                    if(teamValue < newTeam.teamValue || newTeam.listPlayers.length === 11)
-                        return newTeam;
-                               
+
+                newTeam.addPlayers(selectedPlayers);
+
+                if (teamValue < newTeam.teamValue && newTeam.listPlayers.length === 11)
+                { 
+                    return newTeam;
+                }
+
             }
         }
     }
